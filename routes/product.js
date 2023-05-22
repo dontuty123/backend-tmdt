@@ -71,7 +71,6 @@ router.get("/", async (req, res) => {
     } else {
       products = await Product.find();
     }
-    console.log(products);
 
     res.status(200).json(products);
   } catch (err) {
