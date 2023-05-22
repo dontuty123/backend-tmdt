@@ -65,7 +65,7 @@ router.get("/", async (req, res) => {
 });
 
 //GET MONTHLY IMCOME
-router.get("/income", verifyTokenAndAdmin, async (req, res) => {
+router.get("/income", async (req, res) => {
   const productId = req.query.pid;
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
