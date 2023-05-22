@@ -48,7 +48,7 @@ router.delete("/:id", async (req, res) => {
 router.get("/find/:userId", async (req, res) => {
   console.log(">>>>>>>>>>", req.params.userId);
   try {
-    const orders = await Order.findById(req.params.userId);
+    const orders = await Order.find({ userId: req.params.userId }).exec();
     console.log("ordersssssssssssssss", orders);
     res.status(200).json(orders);
   } catch (err) {
@@ -60,7 +60,7 @@ router.get("/find/:userId", async (req, res) => {
 //GET ALL order
 router.get("/", async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find({});
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);
