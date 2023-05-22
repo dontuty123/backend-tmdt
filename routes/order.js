@@ -8,7 +8,7 @@ const {
 const router = require("express").Router();
 
 //Create
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   const newOrder = new Order(req.body);
   try {
     const savedOrder = await newOrder.save();
@@ -19,7 +19,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(
       req.params.id,
@@ -35,7 +35,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
     res.status(200).json("Order has been deleted...");
@@ -45,7 +45,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
 });
 
 //GET user order
-router.get("/find/:userId", verifyToken, async (req, res) => {
+router.get("/find/:userId", async (req, res) => {
   try {
     const orders = await Order.findById({ userId: req.params.userId });
     res.status(200).json(orders);
