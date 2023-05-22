@@ -46,10 +46,13 @@ router.delete("/:id", async (req, res) => {
 
 //GET user order
 router.get("/find/:userId", async (req, res) => {
+  console.log(">>>>>>>>>>", req.params.userId);
   try {
-    const orders = await Order.findById({ userId: req.params.userId });
+    const orders = await Order.findById(req.params.userId);
+    console.log("ordersssssssssssssss", orders);
     res.status(200).json(orders);
   } catch (err) {
+    console.log("ád");
     res.status(500).json(err);
   }
 });
